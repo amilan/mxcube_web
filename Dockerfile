@@ -30,7 +30,6 @@ RUN yum install -y \
         libjpeg-turbo-devel \
         libxml2-devel \
         libxslt-devel \
-        redis \
         openssl-devel \
         libgfortran \
         cyrus-sasl-devel
@@ -51,7 +50,22 @@ RUN yum makecache # && yum update -y
 
 # Install python pip ####
 RUN yum install -y python-pip
+RUN yum install -y redis
 
 # Install requirements ####
 RUN pip install -r requirements.txt
+
+# Install npm ####
+RUN npm install
+RUN npm install fabric
+RUN npm install --dev
+
+RUN cp backend_server.js.example backend_server.js
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+EXPOSE 8090 
+# 8081
+
 
