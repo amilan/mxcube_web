@@ -16,7 +16,7 @@ RUN yum install -y gcc-c++ make
 RUN yum install -y nodejs npm
 
 # Check nodejs version ####
-RUN node --version
+# RUN node --version
 
 # Install npm ####
 # RUN yum install -y npm
@@ -39,9 +39,11 @@ RUN yum install -y \
 RUN yum install -y git
 
 # Get MxCUBE code ####
-
-RUN cd /tmp; git clone https://github.com/mxcube/mxcube3.git 
-RUN cd /tmp/mxcube3; git submodule init; git submodule update
+RUN mkdir /mxcube
+WORKDIR /mxcube
+RUN git clone https://github.com/mxcube/mxcube3.git --recursive
+WORKDIR mxcube3
+# RUN git submodule init; git submodule update
 
 # Install EPEL repository ####
 RUN yum install -y epel-release
@@ -51,5 +53,5 @@ RUN yum makecache # && yum update -y
 RUN yum install -y python-pip
 
 # Install requirements ####
-RUN cd /tmp/mxcube3; pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
