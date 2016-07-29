@@ -62,10 +62,12 @@ RUN npm install --dev
 
 RUN cp backend_server.js.example backend_server.js
 
-COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+#COPY docker-entrypoint.sh /usr/local/bin/
+#ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
-EXPOSE 8090 
-# 8081
+EXPOSE 8090 8081
 
+# WORKDIR /mxcube/mxcube3
+# CMD python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
+# CMD ["python", "mxcube3-server", "-r", "/mxcube/mxcube3/test/HardwareObjectsMockup.xml", "--log-file", "/mxcube/mxcube3/mxcube.log", ";npm start"]
 

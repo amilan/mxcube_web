@@ -35,6 +35,8 @@ List all the containers and remove the selected one
     docker ps -a
     docker rm <container_name>
 
+    docker run -i -p 8090:8090 -t mxcube_web python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
+
 TODO's
 ------
 [] Entrypoint it's not working

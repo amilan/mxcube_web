@@ -1,0 +1,36 @@
+version: '2'
+services:
+  redis:
+    #restart: always
+    image: redis
+    expose:
+      - "6379"
+    ports:
+      - "6379:6379"
+  mxcube:
+    #restart: always
+    build: .
+    #image: mxcube_web
+    expose:
+      - "8081"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    links:
+      - redis
+    command: /bin/bash
+    #command: python mxcube4-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
+  npm:
+    build: .
+    expose:
+      - "8090"
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mxcube
+    links:
+      - mxcube
+    command: npm start
+
+

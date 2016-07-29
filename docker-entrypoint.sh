@@ -1,13 +1,13 @@
 #!/bin/bash
 
-cd /mxcube/mxcube3
+# cd /mxcube/mxcube3
 
 # Run the redis db
-redis-server&
+# redis-server&
 
 # Run mxcube-server
-python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log&
+python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
 
 # Run npm
-npm start&
+# npm start&
 
