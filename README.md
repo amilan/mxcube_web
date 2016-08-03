@@ -1,4 +1,3 @@
-=======================
 MXCuBE Docker container
 =======================
 
@@ -19,17 +18,23 @@ https://docs.docker.com/
 Building the image
 ------------------
 To build the image you can clone this repository and run:
-    docker build -t mxcube_web .
+```
+docker build -t mxcube_web .
+```
 
   * Note: mxcube_web is just the name that you will give to your new image, feel free to change it if needed.
 
 Running MXCuBE
 --------------
 In order to run the container you can use one of the following options:
-    docker run -i -p 8090:8090 -t mxcube_web /bin/bash
+```
+docker run -i -p 8090:8090 -t mxcube_web /bin/bash
+```
 
 And then you are inside the container. Now you only need to run:
-    docker-entrypoint.sh
+```
+docker-entrypoint.sh
+```
 
 Now you can open your favourite web browser and go to this url:
 localhost:8090
@@ -39,11 +44,15 @@ Last step: have fun using mxcube web!
 Useful commands
 ---------------
 Run your container with map forwarding and in desattached mode:
-    docker run -d --name mxcube -p 8090:8090
+```
+docker run -d --name mxcube -p 8090:8090
+```
 
 List all the containers and remove the selected one
-    docker ps -a
-    docker rm <container_name>
+```
+docker ps -a
+docker rm <container_name>
+```
 
 TODO's
 ------
