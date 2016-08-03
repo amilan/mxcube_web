@@ -65,7 +65,7 @@ RUN npm run build
 #RUN npm install fabric
 #RUN npm install --dev
 
-#COPY test.py /mxcube/mxcube3/
+COPY run_mxcube /usr/local/bin/
 #COPY docker-entrypoint.sh /usr/local/bin/
 #ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 

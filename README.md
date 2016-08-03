@@ -26,6 +26,7 @@ This branch is using docker-compose. That means that everything you need to do i
 docker-compose build
 docker-compose up
 ```
+* Note: We are using now the port 8081, this is because we are using an static build for the app. That means, that now you should access to the: localhost:8081 in order to use the app.
 
 You can still use the docker commands as explained below in the deprecated info.
 
@@ -43,8 +44,10 @@ Usage without docker-compose
 
   - Launch the container with the following command:
 ```
-  > docker run -i -p 8090:8090 -t mxcube_web /bin/bash
+  > docker run -i -p 8081:8081 -t mxcube_web /bin/bash
 ```
+
+* Note that now we are using the port 8081, this is because we are using an static build for the app.
 
   - Inside the container run:
 ```
