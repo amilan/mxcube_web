@@ -5,7 +5,7 @@
 FROM centos:7
 MAINTAINER Antonio Milan Otero <antonio.milan_otero.maxiv.lu.se>
 
-# Install #### 
+# Install ####
 RUN yum install -y curl
 RUN curl --silent --location https://rpm.nodesource.com/setup_4.x | bash -
 
@@ -50,25 +50,27 @@ RUN yum makecache # && yum update -y
 
 # Install python pip ####
 RUN yum install -y python-pip
+
+#We are going to run this in a different container, therefore we will remove it.
 RUN yum install -y redis
 
 # Install requirements ####
 RUN pip install -r requirements.txt
+RUN cp backend_server.js.example backend_server.js
 
 # Install npm ####
 RUN npm install
-RUN npm install fabric
-RUN npm install --dev
+RUN npm run build
 
-RUN cp backend_server.js.example backend_server.js
+#RUN npm install fabric
+#RUN npm install --dev
 
 #COPY test.py /mxcube/mxcube3/
-COPY docker-entrypoint.sh /usr/local/bin/
+#COPY docker-entrypoint.sh /usr/local/bin/
 #ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
-EXPOSE 8090 8081
+EXPOSE 8081
 
 # WORKDIR /mxcube/mxcube3
 # CMD python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
 # CMD ["python", "mxcube3-server", "-r", "/mxcube/mxcube3/test/HardwareObjectsMockup.xml", "--log-file", "/mxcube/mxcube3/mxcube.log", ";npm start"]
-

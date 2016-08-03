@@ -1,12 +1,5 @@
 version: '2'
 services:
-  redis:
-    #restart: always
-    image: redis
-    expose:
-      - "6379"
-    ports:
-      - "6379:6379"
   mxcube:
     #restart: always
     build: .
@@ -19,23 +12,29 @@ services:
     #  - redis
     links:
       - redis:localhost
-    # command: /bin/bash
     command: python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file /tmp/mxcube.log
     volumes:
       - ./tmp:/tmp
       #- ./ui:/mxcube/mxcube3/mxcube3/ui
-  npm:
-    build: .
+  redis:
+    #restart: always
+    image: redis
     expose:
-      - "8090"
+      - "6379"
     ports:
-      - "8090:8090"
-    #depends_on:
-    #  - mxcube
-    links:
-      - mxcube:localhost
-    command: npm start
-    #volumes:
-    #  - ./ui:/mxcube/mxcube3/mxcube3/ui
-
-
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+  #npm:
+  #  build: .
+  #  expose:
+  #    - "8090"
+  #  ports:
+  #    - "8090:8090"
+  #  #depends_on:
+  #  #  - mxcube
+  #  links:
+  #    - mxcube:localhost
+  #  command: npm start
+  #  #volumes:
+  #  #  - ./ui:/mxcube/mxcube3/mxcube3/ui
