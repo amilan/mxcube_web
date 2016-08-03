@@ -33,7 +33,7 @@ docker run -i -p 8090:8090 -t mxcube_web /bin/bash
 
 And then you are inside the container. Now you only need to run:
 ```
-docker-entrypoint.sh
+run_mxcube
 ```
 
 Now you can open your favourite web browser and go to this url:

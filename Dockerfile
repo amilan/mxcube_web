@@ -62,7 +62,7 @@ RUN npm install --dev
 
 RUN cp backend_server.js.example backend_server.js
 
-COPY run_mxcube.sh /usr/local/bin/
+COPY run_mxcube /usr/local/bin/
 #COPY docker-entrypoint.sh /usr/local/bin/
 #ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
