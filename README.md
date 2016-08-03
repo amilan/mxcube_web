@@ -26,6 +26,20 @@ docker build -t mxcube_web .
 
 Running MXCuBE
 --------------
+OK, in this new version we are using supervisor to run the processes needed in background.
+It's already configured in order that you only need to start the docker container and it will automatically start all the processes.
+So, now you only need to run:
+```
+docker run -i -p 8090:8090 -t mxcube_web
+```
+
+After that, you can open a web browser and go the the url: localhost:8090.
+
+And that's it. Have fun!
+
+
+The previous old way is still valid, so you can follow it and do the following steps.
+
 In order to run the container you can use one of the following options:
 ```
 docker run -i -p 8090:8090 -t mxcube_web /bin/bash
@@ -43,7 +57,7 @@ Last step: have fun using mxcube web!
 
 Useful commands
 ---------------
-Run your container with map forwarding and in desattached mode:
+Run your container with map forwarding and in detached mode:
 ```
 docker run -d --name mxcube -p 8090:8090
 ```
@@ -56,7 +70,5 @@ docker rm <container_name>
 
 TODO's
 ------
-[] Entrypoint it's not working:
-  - If you run the scripts in background the docker container it's stopped.
 [] Volume mapping for data:
-  - Maybe it's useful to save mount a directory to save the mxcube logs in the host.
+  - Maybe it's useful to have a mounted directory to save the mxcube logs in the host.

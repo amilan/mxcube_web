@@ -55,6 +55,9 @@ RUN yum install -y redis
 # Install requirements ####
 RUN pip install -r requirements.txt
 
+# Install supervisor
+RUN pip install supervisor
+
 # Install npm ####
 RUN npm install
 RUN npm install fabric
@@ -62,9 +65,13 @@ RUN npm install --dev
 
 RUN cp backend_server.js.example backend_server.js
 
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+
 COPY run_mxcube /usr/local/bin/
 #COPY docker-entrypoint.sh /usr/local/bin/
 #ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 EXPOSE 8090
 # 8081
+
+CMD ["/usr/bin/supervisord"]
