@@ -15,22 +15,27 @@ services:
       - "8081"
     ports:
       - "8081:8081"
-    depends_on:
-      - redis
+    #depends_on:
+    #  - redis
     links:
-      - redis
-    command: /bin/bash
-    #command: python mxcube4-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
+      - redis:localhost
+    # command: /bin/bash
+    command: python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file /tmp/mxcube.log
+    volumes:
+      - ./tmp:/tmp
+      #- ./ui:/mxcube/mxcube3/mxcube3/ui
   npm:
     build: .
     expose:
       - "8090"
     ports:
       - "8090:8090"
-    depends_on:
-      - mxcube
+    #depends_on:
+    #  - mxcube
     links:
-      - mxcube
+      - mxcube:localhost
     command: npm start
+    #volumes:
+    #  - ./ui:/mxcube/mxcube3/mxcube3/ui
 
 

@@ -1,14 +1,13 @@
-=======================
 MXCuBE Docker container
 =======================
 
 Introduction
 ------------
-This is a first implementation of a docker container which is able to run 
+This is a first implementation of a docker container which is able to run
 the MXCuBE web application.
 
 It's based on a centOS 7 image and has been built following the procedure
-listed in MXCuBE web's wiki: 
+listed in MXCuBE web's wiki:
 .. _MXCuBE Installation tutorial: https://github.com/mxcube/mxcube3/wiki/How-to:-Installation
 
 Installing Docker
@@ -37,9 +36,37 @@ List all the containers and remove the selected one
 
     docker run -i -p 8090:8090 -t mxcube_web python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
 
+Usage
+-----
+* Clone the repository and from master branch do:
+  - Build the image:
+
+        > docker build -t mxcube_web .
+
+  - Launch the container with the following command:
+
+        > docker run -i -p 8090:8090 -t mxcube_web /bin/bash
+
+  - Inside the container run:
+
+        > entrypoint.sh
+
+* Clone the repository and from use_composer branch do:
+  - Build the image:
+
+        > docker build -t mxcube_web .
+
+  - Launch docker composer:
+
+        > docker-compose up
+
+    * This is not working yet.
+
+
 TODO's
 ------
-[] Entrypoint it's not working
-[] Volume mapping for data??
+[] FIX docker-compose up.
+    - Entrypoint it's not working.
+    - Working only for one process, i.e. running only the python mxcube server.
 
-
+[] Save logs in a mounted storage.
