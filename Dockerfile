@@ -5,7 +5,7 @@
 FROM centos:7
 MAINTAINER Antonio Milan Otero <antonio.milan_otero.maxiv.lu.se>
 
-# Install #### 
+# Install ####
 RUN yum install -y curl
 RUN curl --silent --location https://rpm.nodesource.com/setup_4.x | bash -
 
@@ -63,9 +63,7 @@ RUN npm install --dev
 RUN cp backend_server.js.example backend_server.js
 
 COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+#ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
-EXPOSE 8090 
+EXPOSE 8090
 # 8081
-
-
