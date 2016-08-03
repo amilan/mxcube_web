@@ -15,20 +15,44 @@ Installing Docker
 You can find more information about Docker installation here:
 https://docs.docker.com/
 
-Building the image
-------------------
-To build the image you can clone this repository and run:
+How to use it
+=============
+If you want to use this container you have two possible ways:
+1. Get the latest image from docker hub.
+2. Clone the github repository and build your own image.
+
+
+1. Run the container directly from docker hub
+---------------------------------------------
+You can run the official docker container executing the following commands:
+
+```
+docker run -i -p 8090:8090 -t amilan/mxcube_container
+```
+This will pull the official image from docker hub, create the container and run the services.
+
+
+2. Building the image
+---------------------
+To build the image you can clone this repository:
+```
+git clone https://github.com/amilan/mxcube_container.git
+```
+
+And execute:
 ```
 docker build -t mxcube_web .
 ```
 
   * Note: mxcube_web is just the name that you will give to your new image, feel free to change it if needed.
 
-Running MXCuBE
---------------
-OK, in this new version we are using supervisor to run the processes needed in background.
-It's already configured in order that you only need to start the docker container and it will automatically start all the processes.
-So, now you only need to run:
+This will create a new image in your system called mxcube_web. Now you will be able to run containers using that image.
+
+### Running MXCuBE
+
+OK, now it's time to run the services. For this new version we are using supervisor in order to run the needed processes in background.
+It's already configured and you only need to start the docker container, it will automatically start all services for you.
+So, the next step is to run:
 ```
 docker run -i -p 8090:8090 -t mxcube_web
 ```
@@ -37,10 +61,12 @@ After that, you can open a web browser and go the the url: localhost:8090.
 
 And that's it. Have fun!
 
+### Old way
 
-The previous old way is still valid, so you can follow it and do the following steps.
+The previous "old way" is still valid, so if you prefer you can follow this steps.
 
-In order to run the container you can use one of the following options:
+First, you must clone the repository and build the image as explained above.
+After that, in order to run the container you can execute:
 ```
 docker run -i -p 8090:8090 -t mxcube_web /bin/bash
 ```
