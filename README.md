@@ -1,6 +1,10 @@
 MXCuBE Docker container
 =======================
 
+Warning
+-------
+This branch is under development and it's not working yet. It's possible to make it work with ugly workarounds.
+
 Introduction
 ------------
 This is a first implementation of a docker container which is able to run
@@ -17,35 +21,20 @@ You can find more information about Docker installation here:
 
 Building the image
 ------------------
-To build the image you can clone this repository and run:
+This branch is using docker-compose. That means that everything you need to do is clone the repo and execute:
 ```
-docker build -t mxcube_web .
-```
-
-Running MXCuBE
---------------
-In order to run the container you can use one of the following options:
-```
-docker run -i -t mxcube_web /bin/bash
+docker-compose build
+docker-compose up
 ```
 
-Useful commands
----------------
-Run your container with map forwarding
-```
-docker run -d --name mxcube -p 8090:8090
-```
+You can still use the docker commands as explained below in the deprecated info.
 
-List all the containers and remove the selected one
-```
-docker ps -a
-docker rm <container_name>
 
-docker run -i -p 8090:8090 -t mxcube_web python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
-```
+Deprecated info
+===============
 
-Usage
------
+Usage without docker-compose
+----------------------------
 * Clone the repository and from master branch do:
   - Build the image:
 ```
@@ -59,13 +48,13 @@ Usage
 
   - Inside the container run:
 ```
-  > entrypoint.sh
+  > run_mxcube
 ```
 
 * Clone the repository and from use_composer branch do:
   - Build the image:
 ```
-  > docker build -t mxcube_web .
+  > docker-compose build
 ```
 
   - Launch docker composer:
@@ -77,9 +66,23 @@ Usage
 
 
 TODO's
-------
+======
 [] FIX docker-compose up.
-    - Entrypoint it's not working.
-    - Working only for one process, i.e. running only the python mxcube server.
+    - links are not working. Mxcube container cannot connect to redis container.
 
-[] Save logs in a mounted storage.
+
+
+Useful docker commands
+----------------------
+Run your container with map forwarding
+```
+docker run -d --name mxcube -p 8090:8090
+```
+
+List all the containers and remove the selected one
+```
+docker ps -a
+docker rm <container_name>
+
+docker run -i -p 8090:8090 -t mxcube_web python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
+```
