@@ -27,7 +27,7 @@ If you want to use this container you have two possible ways:
 You can run the official docker container executing the following commands:
 
 ```
-docker run -i -p 8090:8090 -t amilan/mxcube_container
+docker run -i -p 8090:8090 -t amilan/mxcube_web
 ```
 This will pull the official image from docker hub, create the container and run the services.
 
@@ -36,7 +36,7 @@ This will pull the official image from docker hub, create the container and run 
 ---------------------
 To build the image you can clone this repository:
 ```
-git clone https://github.com/amilan/mxcube_container.git
+git clone https://github.com/amilan/mxcube_web.git
 ```
 
 And execute:
