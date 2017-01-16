@@ -33,10 +33,6 @@ RUN yum install -y \
         openssl-devel \
         libgfortran \
         cyrus-sasl-devel
-## missing for development version
-# cairo
-# cairo-devel
-##
 
 # Install git ####
 RUN yum install -y git
@@ -44,7 +40,6 @@ RUN yum install -y git
 # Get MxCUBE code ####
 RUN mkdir /mxcube
 WORKDIR /mxcube
-# VOLUME /
 RUN git clone https://github.com/mxcube/mxcube3.git --recursive
 WORKDIR mxcube3
 # RUN git submodule init; git submodule update
@@ -79,4 +74,4 @@ COPY run_mxcube /usr/local/bin/
 EXPOSE 8090
 # 8081
 
-# CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord"]
