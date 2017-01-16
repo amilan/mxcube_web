@@ -66,6 +66,8 @@ In case you don't have it yet, clone the repository:
 git clone https://github.com/mxcube/mxcube3.git
 ```
 
+In
+
 ### 3- Run the container mounting your host.
 
 ```
@@ -99,14 +101,21 @@ npm install --dev
 ### 4- Disable Supervisor
 
 There are several possibilities here, maybe the simplest one is to just comment
-the content on the /etc/supervisor/supervisor.conf
+the processes that we want to run manually.
+In order to do that, you should edit the file: /etc/supervisor/supervisord.conf
+inside of your container.
 
 ```
-# [supervisord]
-# nodaemon=true
+vi /etc/supervisor/supervisord.conf
+```
+And get sure that the content of the file looks like this:
 
-# [program:redis]
-# command=redis-server
+```
+[supervisord]
+nodaemon=true
+
+[program:redis]
+command=redis-server
 
 # [program:mxcube]
 # command=python mxcube3-server -r test/HardwareObjectsMockup.xml --log-file mxcube.log
@@ -115,10 +124,20 @@ the content on the /etc/supervisor/supervisor.conf
 # command=npm start
 ```
 
+In case you are not familiar with vi, enter in edit mode pressing 'i'.
+
+Once you are OK with the content of the file, press Esc and type:
+
+```
+:wq
+```
+
+> Note: keep the two first lines or supervisor will complain.
+
 And then, restart your container:
 
 ```
-docker restart -it mxcube3
+docker restart mxcube3
 ```
 
 Of course, the best solution is just disable the supervisor service, but
